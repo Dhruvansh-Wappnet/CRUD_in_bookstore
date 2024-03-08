@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .book-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .book-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .book-info {
+            flex: 1;
+        }
+        .button-container {
+            display: flex;
+        }
+        .edit-button, .delete-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #fff;
+        }
+        .edit-button:hover, .delete-button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>List of Books</h1>
+
+        <ul class="book-list">
+            {% for book in books %}
+                <li>
+                    <span class="book-info">{{ book.title }} by {{ book.author }} - ${{ book.price }}</span>
+                    <div class="button-container">
+                        <a href="{% url 'edit_book' book.id %}" class="edit-button">Edit</a>
+                        <a href="{% url 'delete_book' book.id %}" class="delete-button">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
